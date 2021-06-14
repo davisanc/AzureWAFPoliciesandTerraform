@@ -27,6 +27,7 @@ resource "azurerm_public_ip" "example" {
   sku                 = "Standard"
 }
 
+#create some locals
 locals {
   backend_address_pool_name      = "${azurerm_virtual_network.vnet.name}-beap"
   frontend_port_name             = "${azurerm_virtual_network.vnet.name}-feport"
