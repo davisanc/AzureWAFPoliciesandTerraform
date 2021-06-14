@@ -114,7 +114,7 @@ resource "azurerm_web_application_firewall_policy" "WAF-Devops-waf" {
   }
 
 }
-#create storage account
+#Create storage account
 resource "random_id" "storage_account" {
   byte_length = 2
 }
