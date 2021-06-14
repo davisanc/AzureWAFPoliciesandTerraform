@@ -27,7 +27,7 @@ resource "azurerm_resource_group" "rg" {
   name     = "WAF-DevOps-app"
   location = "UK South"
 }
-#Create WAF policy
+#Create WAF policy to attach to App Gateway
 resource "azurerm_web_application_firewall_policy" "WAF-Devops-waf" {
   name                = "WAF-Devops-wafpolicy"
   resource_group_name = azurerm_resource_group.rg.name
