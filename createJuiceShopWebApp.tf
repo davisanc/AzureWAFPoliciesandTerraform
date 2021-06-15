@@ -15,10 +15,7 @@ resource "random_id" "webappname" {
   byte_length = 2
 }
 #create app service for juiceshop
-resource "azurerm_app_service" "appservice" {
-  #"[concat('owaspdirect','-', uniqueString(resourceGroup().id))]"
-  #name                = "juiceshop-app-service"
-  #name                = "[concat("juiceshop","-","random_id.webappname")]"         
+resource "azurerm_app_service" "appservice" {         
   name                = "juiceshop${random_id.webappname.hex}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
