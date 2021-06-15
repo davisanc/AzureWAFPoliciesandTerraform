@@ -22,7 +22,7 @@ provider "azurerm" {
 }
 
 data "azurerm_client_config" "current" {}
-# Create our Resource Group - WAF-DevOps-RG
+# Create our Resource Group where we deploy our infra- WAF-DevOps-RG
 resource "azurerm_resource_group" "rg" {
   name     = "WAF-DevOps-app"
   location = "UK South"
