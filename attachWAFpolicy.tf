@@ -64,7 +64,6 @@ resource "azurerm_application_gateway" "network" {
     name                 = local.frontend_ip_configuration_name
     public_ip_address_id = azurerm_public_ip.example.id
   }
-#force change
   backend_address_pool {
     name = local.backend_address_pool_name
     fqdns = ["${azurerm_app_service.appservice.name}.azurewebsites.net"]
@@ -93,5 +92,6 @@ resource "azurerm_application_gateway" "network" {
     backend_address_pool_name  = local.backend_address_pool_name
     backend_http_settings_name = local.http_setting_name
   }
+  #you may want to use variables
   firewall_policy_id = "/subscriptions/60e79550-d86a-4c92-a4e1-c7faa8c6ae74/resourceGroups/WAF-DevOps-app/providers/Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies/WAF-Devops-wafpolicy"
 }

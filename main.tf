@@ -118,7 +118,7 @@ resource "azurerm_web_application_firewall_policy" "WAF-Devops-waf" {
 resource "random_id" "storage_account" {
   byte_length = 2
 }
-#create Storage Account!
+#create Storage Account
 resource "azurerm_storage_account" "wafdevopssaapp" {
   name                     = "wafdevopssaapp${lower(random_id.storage_account.hex)}"
   resource_group_name      = azurerm_resource_group.rg.name
