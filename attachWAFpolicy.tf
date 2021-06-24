@@ -54,7 +54,7 @@ resource "azurerm_application_gateway" "network" {
     name      = "my-gateway-ip-configuration"
     subnet_id = azurerm_subnet.frontend.id
   }
-
+//this is a comment
   frontend_port {
     name = local.frontend_port_name
     port = 80
