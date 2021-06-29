@@ -21,6 +21,7 @@ resource "azurerm_app_service_plan" "appserviceplan" {
 resource "random_id" "private-webappname" {
   byte_length = 2
 }
+//create private JuiceShop webapp
 resource "azurerm_app_service" "privatewebapp" {
   name                = "private-juiceshop${random_id.private-webappname.hex}"
   location            = azurerm_resource_group.rg.location
