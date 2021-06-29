@@ -64,7 +64,7 @@ resource "azurerm_private_endpoint" "privateendpoint" {
 
   private_service_connection {
     name = "privateendpointconnection"
-    private_connection_resource_id = azurerm_app_service.backwebapp.id
+    private_connection_resource_id = azurerm_app_service.privatewebapp.id
     subresource_names = ["sites"]
     is_manual_connection = false
   }
