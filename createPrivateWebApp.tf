@@ -12,6 +12,8 @@ resource "azurerm_app_service_plan" "appserviceplan" {
   name                = "private-juiceshop-appserviceplan"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
+  kind = "Linux"
+  reserved = true
 
   sku {
     tier = "Premiumv2"
@@ -35,7 +37,7 @@ resource "azurerm_app_service" "privatewebapp" {
     "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
   }
     site_config {
-    //linux_fx_version = "DOCKER|mohitkusecurity/juice-shop-updated:latest"
+    linux_fx_version = "DOCKER|mohitkusecurity/juice-shop-updated:latest"
     always_on = true
   }
 }
