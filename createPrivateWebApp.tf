@@ -35,7 +35,7 @@ resource "azurerm_app_service" "privatewebapp" {
     "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
   }
     site_config {
-    linux_fx_version = "DOCKER|mohitkusecurity/juice-shop-updated:latest"
+    //linux_fx_version = "DOCKER|mohitkusecurity/juice-shop-updated:latest"
     always_on = true
   }
 }
