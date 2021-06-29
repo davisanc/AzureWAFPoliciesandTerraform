@@ -27,7 +27,7 @@ resource "random_id" "password" {
 //${random_id.password.hex}
 
 resource "azurerm_windows_virtual_machine" "example" {
-  name                = "winserver${random_id.password.hex}"
+  name                = "Server${random_id.password.hex}"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   size                = "Standard_F2"
