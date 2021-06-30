@@ -18,7 +18,7 @@ resource "azurerm_public_ip" "fwpip" {
 
 resource "azurerm_firewall" "firewall" {
   name                = "firewall"
-  sku                 = Premium
+  sku_tier            = Premium
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
@@ -95,10 +95,6 @@ resource "azurerm_firewall_policy_rule_collection_group" "example" {
 }
 
 
-
-output "firewall_private_ip" {
-  value = data.azurerm_firewall.firewall.ip_configuration[0].private_ip_address
-}
 resource "azurerm_route_table" "routetable" {
   name                          = "RouteTable"
   location                      = azurerm_resource_group.rg.location
