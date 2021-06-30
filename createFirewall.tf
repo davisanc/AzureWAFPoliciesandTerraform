@@ -33,7 +33,7 @@ resource "azurerm_firewall_policy" "fwpolicy" {
   name                = "fwpolicy"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
-  sku                 = Premium
+  sku                 = "Premium"
   firewalls           = azurerm_firewall.firewall.id
 
   dns {
@@ -105,6 +105,6 @@ resource "azurerm_route_table" "routetable" {
     name           = "DefaultGW"
     address_prefix = "10.1.4.0/24"
     next_hop_type  = "VirtualAppliance"
-    next_hop_in_ip_address = azurerm_firewall.firewall.ip_configuration.private_ip_address
+    next_hop_in_ip_address = azurerm_firewall.firewall.ip_configuration[0].private_ip_address
   }
 }
