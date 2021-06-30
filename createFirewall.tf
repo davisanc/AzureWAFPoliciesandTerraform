@@ -94,7 +94,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "example" {
   }
 }
 
-
+//route table
 resource "azurerm_route_table" "routetable" {
   name                          = "RouteTable"
   location                      = azurerm_resource_group.rg.location
