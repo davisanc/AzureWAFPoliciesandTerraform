@@ -18,7 +18,7 @@ resource "azurerm_public_ip" "fwpip" {
 
 resource "azurerm_firewall" "firewall" {
   name                = "firewall"
-  sku                 = "Premium"
+  sku                 = Premium
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
@@ -31,10 +31,10 @@ resource "azurerm_firewall" "firewall" {
 
 resource "azurerm_firewall_policy" "fwpolicy" {
   name                = "fwpolicy"
-  resource_group_name = "azurerm_resource_group.rg.name"
-  location            = "azurerm_resource_group.rg.location"
-  sku                 = "Premium"
-  firewalls           = "azurerm_firewall.firewall.id"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  sku                 = Premium
+  firewalls           = azurerm_firewall.firewall.id
 
   dns {
       proxy_enabled = "true"
@@ -86,9 +86,9 @@ resource "azurerm_firewall_policy_rule_collection_group" "example" {
       name                = "nat_rule_collection1_rule1"
       protocols           = ["TCP"]
       source_addresses    = ["*"]
-      destination_address = "azurerm_firewall.firewall.ip_configuration.public_ip_address_id"
+      destination_address = azurerm_firewall.firewall.ip_configuration.public_ip_address_id
       destination_ports   = ["80"]
-      translated_address  = "azurerm_private_endpoint_connection.privateendpoint.private_service_connection.private_ip_address"
+      translated_address  = azurerm_private_endpoint_connection.privateendpoint.private_service_connection.private_ip_address
       translated_port     = "80"
     }
   }
@@ -108,7 +108,7 @@ resource "azurerm_route_table" "routetable" {
   route {
     name           = "DefaultGW"
     address_prefix = "10.1.4.0/24"
-    next_hop_type  = "VirtualAppliance
-    next_hop_in_ip_address = "azurerm_firewall.firewall.ip_configuration[0].private_ip_address"
+    next_hop_type  = "VirtualAppliance"
+    next_hop_in_ip_address = azurerm_firewall.firewall.ip_configuration.private_ip_address
   }
 }
