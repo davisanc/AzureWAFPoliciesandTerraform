@@ -90,7 +90,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "example" {
       protocols           = ["TCP"]
       source_addresses    = ["*"]
       //destination_address = azurerm_firewall.firewall.ip_configuration.public_ip_address_id
-      destination_address == "20.90.240.234"
+      destination_address = "20.90.240.234"
       destination_ports   = ["80"]
       //translated_address  = azurerm_private_endpoint.privateendpoint.private_service_connection[0].private_ip_address
       translated_address  = "10.1.3.4"
