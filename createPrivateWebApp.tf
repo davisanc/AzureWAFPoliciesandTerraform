@@ -7,7 +7,7 @@ resource "azurerm_subnet" "endpointsubnet" {
   address_prefixes     = ["10.1.3.0/24"]
   enforce_private_link_endpoint_network_policies = true
 }
-//app service plan
+//app service plan!!
 resource "azurerm_app_service_plan" "appserviceplan" {
   name                = "private-juiceshop-appserviceplan"
   location            = azurerm_resource_group.rg.location
