@@ -89,7 +89,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "example" {
       name                = "nat_rule_collection1_rule1"
       protocols           = ["TCP"]
       source_addresses    = ["*"]
-      //destination_address = azurerm_firewall.firewall.ip_configuration.public_ip_address_id
+      destination_address = azurerm_firewall.firewall.ip_configuration[0].public_ip_addressses
       destination_address = "20.90.240.234"
       destination_ports   = ["80"]
       //translated_address  = azurerm_private_endpoint.privateendpoint.private_service_connection[0].private_ip_address
@@ -108,7 +108,7 @@ resource "azurerm_route_table" "routetable" {
 
   route {
     name           = "DefaultGW"
-    address_prefix = "10.1.4.0/24"
+    address_prefix = "10.1.0.0/16"
     next_hop_type  = "VirtualAppliance"
     next_hop_in_ip_address = azurerm_firewall.firewall.ip_configuration[0].private_ip_address
   }
