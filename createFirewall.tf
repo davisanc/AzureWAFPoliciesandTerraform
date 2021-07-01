@@ -41,7 +41,7 @@ resource "azurerm_firewall_policy" "fwpolicy" {
 
   }
 }
-
+//fw policy rule collection group
 resource "azurerm_firewall_policy_rule_collection_group" "example" {
   name               = "example-fwpolicy-rcg"
   firewall_policy_id = azurerm_firewall_policy.fwpolicy.id
