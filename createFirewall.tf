@@ -28,12 +28,12 @@ resource "azurerm_firewall" "firewall" {
     public_ip_address_id = azurerm_public_ip.fwpip.id
   }
 }
-//adding firewall policy
+//adding firewall policy!!
 resource "azurerm_firewall_policy" "fwpolicy" {
   name                = "fwpolicy"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
-  sku                 = Premium
+  sku                 = "Premium"
   firewalls           = azurerm_firewall.firewall.id
 
   dns {
