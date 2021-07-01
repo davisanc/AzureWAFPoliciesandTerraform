@@ -20,6 +20,7 @@ resource "azurerm_public_ip" "fwpip" {
 resource "azurerm_firewall" "firewall" { 
   name                = "firewall"
   sku_tier            = "Premium"
+  firewall_policy_id  = azurerm_firewall_policy.fwpolicy.id
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
@@ -36,7 +37,6 @@ resource "azurerm_firewall_policy" "fwpolicy" {
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   sku                 = "Premium"
-  firewalls           = azurerm_firewall.firewall.id
 
   dns {
       proxy_enabled = "true"
