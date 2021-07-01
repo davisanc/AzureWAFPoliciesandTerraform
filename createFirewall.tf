@@ -43,7 +43,7 @@ resource "azurerm_firewall_policy" "fwpolicy" {
 
   }
 }
-/*
+
 //fw policy rule collection group!!
 resource "azurerm_firewall_policy_rule_collection_group" "example" {
   name               = "example-fwpolicy-rcg"
@@ -111,4 +111,3 @@ resource "azurerm_route_table" "routetable" {
     next_hop_in_ip_address = azurerm_firewall.firewall.ip_configuration[0].private_ip_address
   }
 }
-*/
