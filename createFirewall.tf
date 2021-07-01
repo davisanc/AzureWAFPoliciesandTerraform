@@ -29,7 +29,7 @@ resource "azurerm_firewall" "firewall" {
     public_ip_address_id = azurerm_public_ip.fwpip.id
   }
 }
-/*
+
 //adding firewall policy!!
 resource "azurerm_firewall_policy" "fwpolicy" {
   name                = "fwpolicy"
@@ -43,6 +43,7 @@ resource "azurerm_firewall_policy" "fwpolicy" {
 
   }
 }
+/*
 //fw policy rule collection group!!
 resource "azurerm_firewall_policy_rule_collection_group" "example" {
   name               = "example-fwpolicy-rcg"
