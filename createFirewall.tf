@@ -16,7 +16,8 @@ resource "azurerm_public_ip" "fwpip" {
   sku                 = "Standard"
 }
 
-resource "azurerm_firewall" "firewall" {
+/*
+resource "azurerm_firewall" "firewall" { 
   name                = "firewall"
   sku_tier            = "Premium"
   location            = azurerm_resource_group.rg.location
@@ -108,3 +109,4 @@ resource "azurerm_route_table" "routetable" {
     next_hop_in_ip_address = azurerm_firewall.firewall.ip_configuration[0].private_ip_address
   }
 }
+*/
