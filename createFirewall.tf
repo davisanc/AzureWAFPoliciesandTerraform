@@ -30,7 +30,7 @@ resource "azurerm_firewall" "firewall" {
   }
 }
 
-//adding firewall policy!!
+//adding firewall policy to firewall
 resource "azurerm_firewall_policy" "fwpolicy" {
   name                = "fwpolicy"
   resource_group_name = azurerm_resource_group.rg.name
