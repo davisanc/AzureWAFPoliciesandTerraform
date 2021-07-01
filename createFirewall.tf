@@ -18,7 +18,7 @@ resource "azurerm_public_ip" "fwpip" {
 
 resource "azurerm_firewall" "firewall" {
   name                = "firewall"
-  sku_tier            = Premium
+  sku_tier            = "Premium"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
@@ -28,7 +28,7 @@ resource "azurerm_firewall" "firewall" {
     public_ip_address_id = azurerm_public_ip.fwpip.id
   }
 }
-
+//adding firewall policy
 resource "azurerm_firewall_policy" "fwpolicy" {
   name                = "fwpolicy"
   resource_group_name = azurerm_resource_group.rg.name
