@@ -86,7 +86,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "example" {
       name                = "nat_rule_collection1_rule1"
       protocols           = ["TCP"]
       source_addresses    = ["*"]
-      destination_address = azurerm_firewall.firewall.ip_configuration.public_ip_address_id
+      destination_address = azurerm_firewall.firewall.ip_configuration[0].public_ip_address_id
       destination_ports   = ["80"]
       translated_address  = azurerm_private_endpoint_connection.privateendpoint.private_service_connection.private_ip_address
       translated_port     = "80"
