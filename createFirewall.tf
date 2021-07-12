@@ -16,7 +16,7 @@ resource "azurerm_public_ip" "fwpip" {
   sku                 = "Standard"
 }
 
-
+//Create firewall resource
 resource "azurerm_firewall" "firewall" { 
   name                = "firewall"
   sku_tier            = "Premium"

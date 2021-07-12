@@ -7,17 +7,33 @@ resource "azurerm_subnet" "endpointsubnet" {
   address_prefixes     = ["10.1.3.0/24"]
   enforce_private_link_endpoint_network_policies = true
 }
+
+resource "azurerm_app_service_environment" "example" {
+  name                         = "example-ase"
+  subnet_id                    = azurerm_subnet.endpointsubnet.id
+  pricing_tier                 = "I1"
+  front_end_scale_factor       = 2
+  internal_load_balancing_mode = "Web, Publishing"
+  allowed_user_ip_cidrs        = ["10.0.0.0/16"]
+
+  cluster_setting {
+    name  = "DisableTls1.0"
+    value = "1"
+  }
+}
+
 //app service plan!!
 resource "azurerm_app_service_plan" "appserviceplan" {
   name                = "private-juiceshop-appserviceplan"
   location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
+  resource_group_name = azurerm_resource_group.rg.name 
   kind = "Linux"
   reserved = true
 
   sku {
-    tier = "Premiumv2"
-    size = "P1v2"
+    //tier = "Premiumv2"
+    tier = "Isolated"
+    size = "I1"
   }
 }
 resource "random_id" "private-webappname" {
