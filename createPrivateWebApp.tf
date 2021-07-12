@@ -12,7 +12,7 @@ resource "azurerm_app_service_environment" "example" {
   name                         = "example-ase"
   subnet_id                    = azurerm_subnet.endpointsubnet.id
   pricing_tier                 = "I1"
-  front_end_scale_factor       = 2
+  front_end_scale_factor       = 5
   internal_load_balancing_mode = "Web, Publishing"
   allowed_user_ip_cidrs        = ["10.0.0.0/16"]
 
