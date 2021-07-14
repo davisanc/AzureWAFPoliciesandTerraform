@@ -35,7 +35,7 @@ resource "azurerm_app_service_plan" "appserviceplan" {
     tier = "Standard"
     //tier = "Isolated"
     //size = "I1"
-    size = S1
+    size = "S1"
   }
 }
 resource "random_id" "private-webappname" {
