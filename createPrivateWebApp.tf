@@ -32,10 +32,10 @@ resource "azurerm_app_service_plan" "appserviceplan" {
   reserved = true
 
   sku {
-    tier = "Premiumv2"
+    tier = "Standard"
     //tier = "Isolated"
     //size = "I1"
-    size = P1V2
+    size = S1
   }
 }
 resource "random_id" "private-webappname" {
