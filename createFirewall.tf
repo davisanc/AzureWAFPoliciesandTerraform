@@ -16,20 +16,7 @@ resource "azurerm_public_ip" "fwpip" {
   sku                 = "Standard"
 }
 
-//Create firewall resource
-resource "azurerm_firewall" "firewall" { 
-  name                = "firewall"
-  sku_tier            = "Premium"
-  firewall_policy_id  = azurerm_firewall_policy.fwpolicy.id
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
 
-  ip_configuration {
-    name                 = "configuration"
-    subnet_id            = azurerm_subnet.fwsubnet.id
-    public_ip_address_id = azurerm_public_ip.fwpip.id
-  }
-}
 
 //adding firewall policy to firewall once again!
 resource "azurerm_firewall_policy" "fwpolicy" {
@@ -119,6 +106,21 @@ resource "azurerm_firewall_policy_rule_collection_group" "example" {
       translated_port     = "22"
     }
     
+  }
+}
+
+//Create firewall resource
+resource "azurerm_firewall" "firewall" { 
+  name                = "firewall"
+  sku_tier            = "Premium"
+  firewall_policy_id  = azurerm_firewall_policy.fwpolicy.id
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+
+  ip_configuration {
+    name                 = "configuration"
+    subnet_id            = azurerm_subnet.fwsubnet.id
+    public_ip_address_id = azurerm_public_ip.fwpip.id
   }
 }
 
