@@ -7,7 +7,7 @@ resource "azurerm_subnet" "endpointsubnet" {
   address_prefixes     = ["10.1.3.0/24"]
   enforce_private_link_endpoint_network_policies = true
 }
-
+/*
 resource "azurerm_app_service_environment" "example" {
   name                         = "example-ase"
   subnet_id                    = azurerm_subnet.endpointsubnet.id
@@ -21,6 +21,7 @@ resource "azurerm_app_service_environment" "example" {
     value = "1"
   }
 }
+*/
 
 //app service plan!!
 resource "azurerm_app_service_plan" "appserviceplan" {
@@ -31,9 +32,10 @@ resource "azurerm_app_service_plan" "appserviceplan" {
   reserved = true
 
   sku {
-    //tier = "Premiumv2"
-    tier = "Isolated"
-    size = "I1"
+    tier = "Premiumv2"
+    //tier = "Isolated"
+    //size = "I1"
+    size = P1V2
   }
 }
 resource "random_id" "private-webappname" {
