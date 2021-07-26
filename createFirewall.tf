@@ -80,7 +80,8 @@ resource "azurerm_firewall_policy_rule_collection_group" "example" {
       //destination_address = "20.90.240.234"
       destination_address = azurerm_public_ip.fwpip.ip_address
       destination_ports   = ["80"]
-      translated_address  = azurerm_private_endpoint.privateendpoint.private_service_connection[0].private_ip_address
+      //translated_address  = azurerm_private_endpoint.privateendpoint.private_service_connection[0].private_ip_address
+      translated_address = azurerm_application_gateway.network.frontend_ip_configuration
       //translated_address  = "10.1.3.4"
       translated_port     = "80"
     }
@@ -93,7 +94,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "example" {
       destination_address = azurerm_public_ip.fwpip.ip_address
       destination_ports   = ["3389"]
       //translated_address  = azurerm_private_endpoint.privateendpoint.private_service_connection[0].private_ip_address
-      translated_address = azurerm_windows_virtual_machine.example.private_ip_address
+      translated_address = azurerm_windows_virtual_machine.example.private_ip_address.public_ip_address_id
       //translated_address  = "10.1.2.4"
       translated_port     = "3389"
     }
