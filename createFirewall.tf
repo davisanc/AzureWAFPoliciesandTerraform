@@ -78,7 +78,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "example" {
       source_addresses    = ["*"]
       //destination_address = azurerm_firewall.firewall.ip_configuration[0].public_ip_addressses
       //destination_address = "20.90.240.234"
-      destination_address = azurerm_public_ip.fwpip.id
+      destination_address = azurerm_public_ip.fwpip.public_ip_address_id
       destination_ports   = ["80"]
       translated_address  = azurerm_private_endpoint.privateendpoint.private_service_connection[0].private_ip_address
       //translated_address  = "10.1.3.4"
@@ -90,7 +90,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "example" {
       source_addresses    = ["*"]
       //destination_address = azurerm_firewall.firewall.ip_configuration[0].public_ip_addressses
       //destination_address = "20.90.240.234"
-      destination_address = azurerm_public_ip.fwpip.id
+      destination_address = azurerm_public_ip.fwpip.public_ip_address_id
       destination_ports   = ["3389"]
       translated_address  = azurerm_private_endpoint.privateendpoint.private_service_connection[0].private_ip_address
       //translated_address  = "10.1.2.4"
@@ -102,7 +102,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "example" {
       source_addresses    = ["*"]
       //destination_address = azurerm_firewall.firewall.ip_configuration[0].public_ip_addressses
       //destination_address = "20.90.240.234"
-      destination_address = azurerm_public_ip.fwpip.id
+      destination_address = azurerm_public_ip.fwpip.public_ip_address_id
       destination_ports   = ["22"]
       translated_address  = azurerm_private_endpoint.privateendpoint.private_service_connection[0].private_ip_address
       //translated_address  = "10.1.2.5"
