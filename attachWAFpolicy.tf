@@ -63,8 +63,7 @@ resource "azurerm_application_gateway" "network" {
   frontend_ip_configuration {
     name                 = local.frontend_ip_configuration_name
     public_ip_address_id = azurerm_public_ip.example.id
-    subnet_id = azurerm_subnet.frontend.id
-    private_ip_address_allocation = "Dynamic"
+   
   }
   backend_address_pool {
     name = local.backend_address_pool_name
