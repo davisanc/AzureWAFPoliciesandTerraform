@@ -88,16 +88,6 @@ resource "azurerm_firewall_policy_rule_collection_group" "example" {
       translated_address = azurerm_windows_virtual_machine.example.private_ip_address
       translated_port     = "3389"
     }
-      rule {
-      name                = "ssh-kali"
-      protocols           = ["TCP"]
-      source_addresses    = ["*"]
-      destination_address = azurerm_public_ip.fwpip.ip_address
-      destination_ports   = ["22"]
-      translated_address  = azurerm_private_endpoint.privateendpoint.private_service_connection[0].private_ip_address
-      translated_port     = "22"
-    }
-    
   }
 }
 
