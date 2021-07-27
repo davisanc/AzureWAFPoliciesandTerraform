@@ -18,7 +18,6 @@ resource "azurerm_public_ip" "fwpip" {
 
 
 
-//adding firewall policy to firewall once again
 resource "azurerm_firewall_policy" "fwpolicy" {
   name                = "fwpolicy"
   resource_group_name = azurerm_resource_group.rg.name
@@ -31,7 +30,6 @@ resource "azurerm_firewall_policy" "fwpolicy" {
   }
 }
 
-//fw policy rule collection group, with rules!!
 resource "azurerm_firewall_policy_rule_collection_group" "example" {
   name               = "example-fwpolicy-rcg"
   firewall_policy_id = azurerm_firewall_policy.fwpolicy.id
@@ -76,39 +74,27 @@ resource "azurerm_firewall_policy_rule_collection_group" "example" {
       name                = "nat_rule_collection1_rule1"
       protocols           = ["TCP"]
       source_addresses    = ["*"]
-      //destination_address = azurerm_firewall.firewall.ip_configuration[0].public_ip_addressses
-      //destination_address = "20.90.240.234"
       destination_address = azurerm_public_ip.fwpip.ip_address
       destination_ports   = ["80"]
-      //translated_address  = azurerm_private_endpoint.privateendpoint.private_service_connection[0].private_ip_address
       translated_address = azurerm_public_ip.example.ip_address
-      //translated_address = "51.132.152.62"
-      //translated_address  = "10.1.3.4"
       translated_port     = "80"
     }
     rule {
       name                = "nat_rule_collection1_rule2"
       protocols           = ["TCP"]
       source_addresses    = ["*"]
-      //destination_address = azurerm_firewall.firewall.ip_configuration[0].public_ip_addressses
-      //destination_address = "20.90.240.234"
       destination_address = azurerm_public_ip.fwpip.ip_address
       destination_ports   = ["3389"]
-      //translated_address  = azurerm_private_endpoint.privateendpoint.private_service_connection[0].private_ip_address
       translated_address = azurerm_windows_virtual_machine.example.private_ip_address
-      //translated_address  = "10.1.2.4"
       translated_port     = "3389"
     }
       rule {
       name                = "ssh-kali"
       protocols           = ["TCP"]
       source_addresses    = ["*"]
-      //destination_address = azurerm_firewall.firewall.ip_configuration[0].public_ip_addressses
-      //destination_address = "20.90.240.234"
       destination_address = azurerm_public_ip.fwpip.ip_address
       destination_ports   = ["22"]
       translated_address  = azurerm_private_endpoint.privateendpoint.private_service_connection[0].private_ip_address
-      //translated_address  = "10.1.2.5"
       translated_port     = "22"
     }
     
