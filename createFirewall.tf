@@ -33,7 +33,7 @@ resource "azurerm_firewall_policy" "fwpolicy" {
 resource "azurerm_firewall_policy_rule_collection_group" "example" {
   name               = "example-fwpolicy-rcg"
   firewall_policy_id = azurerm_firewall_policy.fwpolicy.id
-  priority           = 600
+  priority           = 500
   application_rule_collection {
     name     = "app_rule_collection1"
     priority = 500
