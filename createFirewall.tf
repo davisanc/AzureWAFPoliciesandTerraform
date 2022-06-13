@@ -72,7 +72,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "example" {
       destination_ports     = ["*"]
     }
   }
-//NAT RULE COLLECTION
+//FIREWALL NAT RULE COLLECTION 
   nat_rule_collection {
     name     = "nat_rule_collection1"
     priority = 300
