@@ -81,7 +81,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "example" {
       name                = "nat_rule_collection1_rule1"
       protocols           = ["TCP"]
       source_addresses    = ["*"]
-      destination_address = azurerm_public_ip.fwpip2.ip_address
+      destination_address = azurerm_public_ip.fwpip.ip_address
       destination_ports   = ["80"]
       translated_address = azurerm_public_ip.example.ip_address
       translated_port     = "80"
@@ -90,7 +90,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "example" {
       name                = "nat_rule_collection1_rule2"
       protocols           = ["TCP"]
       source_addresses    = ["*"]
-      destination_address = azurerm_public_ip.fwpip2.ip_address
+      destination_address = azurerm_public_ip.fwpip.ip_address
       destination_ports   = ["3389"]
       translated_address = azurerm_windows_virtual_machine.example.private_ip_address
       translated_port     = "3389"
