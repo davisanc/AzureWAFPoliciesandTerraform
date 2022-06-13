@@ -92,6 +92,7 @@ resource "azurerm_application_gateway" "network" {
     http_listener_name         = local.listener_name
     backend_address_pool_name  = local.backend_address_pool_name
     backend_http_settings_name = local.http_setting_name
+    priority = 1
   }
   #you may want to use variables
   firewall_policy_id = "/subscriptions/60e79550-d86a-4c92-a4e1-c7faa8c6ae74/resourceGroups/WAF-DevOps-app/providers/Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies/WAF-Devops-wafpolicy"
