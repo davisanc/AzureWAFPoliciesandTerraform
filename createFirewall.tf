@@ -95,6 +95,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "example" {
 resource "azurerm_firewall" "firewall" { 
   name                = "firewall"
   sku_tier            = "Premium"
+  sku_name            = "AZFW_VNet"
   firewall_policy_id  = azurerm_firewall_policy.fwpolicy.id
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
