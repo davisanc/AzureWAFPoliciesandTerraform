@@ -69,7 +69,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "example" {
       protocols             = ["Any"]
       source_addresses      = ["*"]
       destination_addresses = ["*"]
-      destination_ports     = ["8080"]
+      destination_ports     = ["*"]
     }
   }
 //FIREWALL NAT RULE COLLECTION 
