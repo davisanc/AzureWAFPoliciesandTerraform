@@ -20,5 +20,5 @@ steps:
     version: 6.0.x
 - task: MicrosoftSecurityDevOps@1
   inputs:
-    categories: 'secrets'
+    categories: 'secrets, IaC'
   displayName: 'Microsoft Security DevOps'
