@@ -1,0 +1,72 @@
+name: Snyk Scan and SARIF Upload
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  snyk_scan:
+    name: Snyk Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Node.js and Snyk CLI
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install Snyk CLI
+        run: npm install -g snyk
+
+      - name: Authenticate Snyk
+        run: snyk auth ${{ secrets.SNYK_TOKEN }} 
+
+
+      - name: Run Snyk to check configuration files for security issues
+        continue-on-error: true
+        run: |
+          snyk iac test --sarif-file-output=snyk.sarif --json-file-output=snyk.json
+          echo "Snyk command completed"
+          echo "Listing current directory contents:"
+          ls -alh
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+
+      - name: Verify Snyk Results SARIF
+        run: |
+          echo "Checking if snyk.sarif file exists:"
+          ls -l snyk.sarif
+          cat snyk.sarif # Display contents of the JSON file for debugging
+
+
+  upload_sarif:
+    name: Upload SARIF
+    needs: snyk_scan
+    runs-on: ubuntu-latest
+
+    steps:
+     
+      - name: List files in workspace
+        run: ls -alh
+
+      - name: Check if SARIF file exists
+        run: |
+          if [ -f "snyk.sarif" ]; then
+            echo "SARIF file found."
+          else
+            echo "SARIF file not found."
+            exit 1
+          fi  
+      - name: Upload SARIF File
+        if: success() || failure()  # Ensure SARIF upload runs regardless of the previous step's success/failure
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: snyk.sarif
