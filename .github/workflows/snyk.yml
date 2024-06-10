@@ -11,14 +11,16 @@ jobs:
         continue-on-error: true
       - name: Run Snyk to check configuration files for security issues
         continue-on-error: true
-        run: |
-          snyk iac test --sarif-file-output=snyk.sarif
-          echo "Snyk command completed"
-          echo "Listing current directory contents:"
-          ls -alh
+        # run: |
+        #   snyk iac test --sarif-file-output=snyk.sarif
+        #   echo "Snyk command completed"
+        #   echo "Listing current directory contents:"
+        #   ls -alh
+        uses: snyk/actions/iac@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
+        with:
+          args: --sarif-file-output=snyk.sarif
 
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v2
