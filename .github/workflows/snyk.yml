@@ -28,7 +28,7 @@ jobs:
       - name: Authenticate Snyk
         run: snyk auth ${{ secrets.SNYK_TOKEN }} 
 
-
+# KICK IT
       - name: Run Snyk to check configuration files for security issues
         continue-on-error: true
         run: |
