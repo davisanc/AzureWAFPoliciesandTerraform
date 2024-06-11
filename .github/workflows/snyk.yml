@@ -43,7 +43,7 @@ jobs:
           echo "Checking if snyk.sarif file exists:"
           ls -l snyk.sarif
           cat snyk.sarif # Display contents of the JSON file for debugging
-
+# update snyk token
       - name: Upload SARIF File
         if: success() || failure()  # Ensure SARIF upload runs regardless of the previous step's success/failure
         uses: github/codeql-action/upload-sarif@v2
