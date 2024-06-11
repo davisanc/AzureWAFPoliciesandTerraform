@@ -1,28 +1,51 @@
-name: Snyk Infrastructure as Code
-on: push
-jobs:
-  snyk:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
+name: Snyk Scan and SARIF Upload
 
-        # Snyk can be used to break the build when it detects security issues.
-        # In this case we want to upload the issues to GitHub Code Scanning
-        continue-on-error: true
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  snyk_scan:
+    name: Snyk Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Node.js and Snyk CLI
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install Snyk CLI
+        run: npm install -g snyk
+
+      - name: Authenticate Snyk
+        run: snyk auth ${{ secrets.SNYK_TOKEN }} 
+
       - name: Run Snyk to check configuration files for security issues
         continue-on-error: true
-        # run: |
-        #   snyk iac test --sarif-file-output=snyk.sarif
-        #   echo "Snyk command completed"
-        #   echo "Listing current directory contents:"
-        #   ls -alh
-        uses: snyk/actions/iac@master
+        run: |
+          snyk iac test --sarif-file-output=snyk.sarif --json-file-output=snyk.json
+          echo "Snyk command completed"
+          echo "Listing current directory contents:"
+          ls -alh
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --sarif-file-output=snyk.sarif
 
-      - name: Upload result to GitHub Code Scanning
+      - name: Verify Snyk Results SARIF
+        run: |
+          echo "Checking if snyk.sarif file exists:"
+          ls -l snyk.sarif
+          cat snyk.sarif # Display contents of the JSON file for debugging
+
+      - name: Upload SARIF File
+        if: success() || failure()  # Ensure SARIF upload runs regardless of the previous step's success/failure
         uses: github/codeql-action/upload-sarif@v2
         with:
-          sarif_file: snyk.sarif
+          sarif_file: snyk.sarif   
