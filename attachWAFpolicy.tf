@@ -95,5 +95,5 @@ resource "azurerm_application_gateway" "network" {
     priority = 1
   }
   #you may want to use variables
-  firewall_policy_id = "/subscriptions/60e79550-d86a-4c92-a4e1-c7faa8c6ae74/resourceGroups/WAF-DevOps-app/providers/Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies/WAF-Devops-wafpolicy"
+  firewall_policy_id = "/subscriptions/1fc00f4d-a938-4e4c-96c5-6446cd536471/resourceGroups/WAF-DevOps-app/providers/Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies/WAF-Devops-wafpolicy"
 }
