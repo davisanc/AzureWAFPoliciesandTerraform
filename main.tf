@@ -105,10 +105,10 @@ resource "azurerm_web_application_firewall_policy" "WAF-Devops-waf" {
       version = "3.1"
       rule_group_override {
         rule_group_name = "REQUEST-920-PROTOCOL-ENFORCEMENT"
-        disabled_rules = [
+        //disabled_rules = [
        //   "920300",
        //   "920440"
-        ]
+       // ]
       }
     }
   }
