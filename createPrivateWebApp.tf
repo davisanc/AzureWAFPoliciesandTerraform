@@ -5,7 +5,7 @@ resource "azurerm_subnet" "endpointsubnet" {
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.1.3.0/24"]
-  enforce_private_link_endpoint_network_policies = true
+  //enforce_private_link_endpoint_network_policies = true
 }
 /*
 resource "azurerm_app_service_environment" "example" {

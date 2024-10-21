@@ -1,7 +1,7 @@
 terraform {
   backend "azurerm" {
     resource_group_name   = "WAF-DevOps"
-    storage_account_name  = "wafdevopssaint"
+    storage_account_name  = "wafdevopssaintv2"
     container_name        = "tstate"
   }
 
@@ -106,8 +106,8 @@ resource "azurerm_web_application_firewall_policy" "WAF-Devops-waf" {
       rule_group_override {
         rule_group_name = "REQUEST-920-PROTOCOL-ENFORCEMENT"
         disabled_rules = [
-          "920300",
-          "920440"
+       //   "920300",
+       //   "920440"
         ]
       }
     }
