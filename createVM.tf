@@ -5,7 +5,7 @@ resource "azurerm_public_ip" "public-pip-example" {
   allocation_method   = "Static"
   sku                 = "Standard"
 }
-//create VM to access web app from private network
+//create VM to access private web app from private network
 resource "azurerm_network_security_group" "nsg" {
   name                = "vm-nsg"
   location            = azurerm_resource_group.rg.location
