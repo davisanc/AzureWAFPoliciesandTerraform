@@ -14,7 +14,7 @@ resource "azurerm_app_service_plan" "example" {
 resource "random_id" "webappname" {
   byte_length = 2
 }
-#create web app service for juiceshop
+#create web app service for juiceshop and deploy
 resource "azurerm_app_service" "appservice" {         
   name                = "juiceshop${random_id.webappname.hex}"
   location            = azurerm_resource_group.rg.location
